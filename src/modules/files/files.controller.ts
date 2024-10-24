@@ -16,7 +16,7 @@ export class FilesController {
     @Post('upload')
     @UseInterceptors(FileInterceptor('file'))
     async uploadFile(
-        @UploadedFile() file: Express.Multer.File,
+        @UploadedFile() file: globalThis.Express.Multer.File,
         @Query('type') type: string,
         @Query('id') id: number,
     ) {

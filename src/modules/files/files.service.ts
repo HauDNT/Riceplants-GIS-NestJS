@@ -93,8 +93,6 @@ export class FilesService {
                     .resize(1200, 800, { fit: 'cover'})
                     .toFile(filePath);
     
-                // fs.writeFileSync(filePath, file.buffer);
-    
                 await this.saveToDatabase(`${uniqueSuffix}.${ext}`, type, id);
     
                 return {
