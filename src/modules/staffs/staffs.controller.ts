@@ -61,7 +61,7 @@ export class StaffsController {
     };
 
     @Post('create')
-    @UseGuards(JWTGuard)
+    // @UseGuards(JWTGuard)
     async create(
         @Body() data: CreateStaffDTO,
     ): Promise<ApiResponseDto<Staff>> {
