@@ -14,15 +14,15 @@ import { FilesService } from './files.service';
 export class FilesController {
     constructor(private readonly filesService: FilesService) { }
 
-    @Post('upload')
-    @UseInterceptors(FileInterceptor('file'))
-    async uploadFile(
-        @UploadedFile() file: Express.Multer.File,
-        @Query('type') type: string,
-        @Query('id') id: number,
-    ) {
-        const saveStatus = await this.filesService.saveAvatar(file, type, id);
+    // @Post('upload')
+    // @UseInterceptors(FileInterceptor('file'))
+    // async uploadFile(
+    //     @UploadedFile() file: Express.Multer.File,
+    //     @Query('type') type: string,
+    //     @Query('id') id: number,
+    // ) {
+    //     const saveStatus = await this.filesService.saveAvatar(file, type, id);
 
-        return saveStatus;
-    }
+    //     return saveStatus;
+    // }
 }
