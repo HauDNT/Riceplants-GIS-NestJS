@@ -33,6 +33,7 @@ import { SeedModule } from './seed/seed.module';
             isGlobal: true,
             load: [configuration],
         }),
+        // TypeOrmModule.forRoot(dataSourceOptions),
         TypeOrmModule.forRootAsync(typeOrmAsyncConfig),
         WarehousesModule,
         StaffsModule,

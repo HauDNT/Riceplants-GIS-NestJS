@@ -1,7 +1,6 @@
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { plainToClass } from 'class-transformer';
-import * as bcrypt from 'bcryptjs';
 import { Staff } from './staff.entity';
 import { Repository } from 'typeorm';
 import { omitFields } from '../../common/helper/omit_field.helper';
@@ -105,9 +104,6 @@ export class StaffsService {
   };
 
   async create(data: CreateStaffDTO): Promise<Staff> {
-    const salt = await bcrypt.genSalt();
-    data.Password = await bcrypt.hash(data.Password, salt);
-
     const staff = omitFields(await this.staffRepository.save(data), [
       'isDeleted',
       'deletedAt',

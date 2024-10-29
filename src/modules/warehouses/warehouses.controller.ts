@@ -76,9 +76,9 @@ export class WarehousesController {
         @Body() data: CreateWarehouseDTO,
     ): Promise<ApiResponseDto<any>> {
         try {
-            await this.warehousesService.create(data);
+            const newWarehouse = await this.warehousesService.create(data);
 
-            return createSuccessResponse('Tạo kho thành công.');
+            return createSuccessResponse('Tạo kho thành công.', newWarehouse);
         } catch (error) {
             throw new HttpException(createErrorResponse(
                 HttpStatus.INTERNAL_SERVER_ERROR.toString(),

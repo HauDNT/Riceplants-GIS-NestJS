@@ -11,6 +11,15 @@ async function bootstrap() {
     app.enableCors();
     app.useGlobalPipes(new ValidationPipe());
 
+    // Initialize dataSource:
+    // await dataSource.initialize()
+    //     .then(() => {
+    //         console.log("Data Source has been initialized!");
+    //     })
+    //     .catch((err) => {
+    //         console.error("Error during Data Source initialization:", err);
+    //     });
+
     const configService = app.get(ConfigService);
 
     // Swagger config:

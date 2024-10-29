@@ -78,7 +78,6 @@ export class StaffsController {
         };
     };
 
-
     @Put('update/:id')
     async update(
         @Param('id') id: number,
