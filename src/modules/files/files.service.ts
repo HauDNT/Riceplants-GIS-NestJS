@@ -72,48 +72,48 @@ export class FilesService {
         };
     };
 
-    async saveAvatar(file: Express.Multer.File, type: string, id: number): Promise<{fileName: string, status: boolean}> {
-        try {
-            await this.findByTypeAndId(type, id);
+    // async saveAvatar(file: Express.Multer.File, type: string, id: number): Promise<{fileName: string, status: boolean}> {
+    //     try {
+    //         await this.findByTypeAndId(type, id);
 
-            if (this.objectFound) {
-                await this.removeImageFromDisk(type);
+    //         if (this.objectFound) {
+    //             await this.removeImageFromDisk(type);
     
-                const dirName = `public/${type}/`;
+    //             const dirName = `public/${type}/`;
     
-                if (!fs.existsSync(dirName)) {
-                    fs.mkdirSync(dirName, { recursive: true });
-                }
+    //             if (!fs.existsSync(dirName)) {
+    //                 fs.mkdirSync(dirName, { recursive: true });
+    //             }
     
-                const uniqueSuffix = uuidv4();
-                const ext = file.originalname.split('.').pop();
-                const filePath = `${dirName}${uniqueSuffix}.${ext}`;
+    //             const uniqueSuffix = uuidv4();
+    //             const ext = file.originalname.split('.').pop();
+    //             const filePath = `${dirName}${uniqueSuffix}.${ext}`;
 
-                await sharp(file.buffer)
-                    .resize(1200, 800, { fit: 'cover'})
-                    .toFile(filePath);
+    //             await sharp(file.buffer)
+    //                 .resize(1200, 800, { fit: 'cover'})
+    //                 .toFile(filePath);
     
-                // fs.writeFileSync(filePath, file.buffer);
+    //             // fs.writeFileSync(filePath, file.buffer);
     
-                await this.saveToDatabase(`${uniqueSuffix}.${ext}`, type, id);
+    //             await this.saveToDatabase(`${uniqueSuffix}.${ext}`, type, id);
     
-                return {
-                    fileName: `${uniqueSuffix}.${ext}`,
-                    status: true,
-                };
-            };
+    //             return {
+    //                 fileName: `${uniqueSuffix}.${ext}`,
+    //                 status: true,
+    //             };
+    //         };
 
-            return {
-                fileName: "",
-                status: false,
-            };
-        } catch (error) {
-            console.log(error);
+    //         return {
+    //             fileName: "",
+    //             status: false,
+    //         };
+    //     } catch (error) {
+    //         console.log(error);
             
-            return {
-                fileName: "",
-                status: false,
-            };
-        }
-    };
+    //         return {
+    //             fileName: "",
+    //             status: false,
+    //         };
+    //     }
+    // };
 };
